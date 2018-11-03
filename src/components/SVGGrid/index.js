@@ -176,10 +176,10 @@ export default class SVGGrid extends Component {
         const botX = (node.Location.X+1) * cellSizeInPx - radius;
         const botY = (node.Location.Y+1) * cellSizeInPx - radius;
 
+        // Shorten + Center the line between the circles a little bit
         const xSlope = nodeX - botX;
         const ySlope = nodeY - botY;
-
-        const lineOffset = .8;
+        const lineOffset = .85;
 
         botClaimLines.push(
           <line

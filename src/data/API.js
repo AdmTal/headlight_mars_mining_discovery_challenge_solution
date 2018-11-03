@@ -1,7 +1,7 @@
 import request from 'superagent';
 
 export function fetchData() {
-  const url = 'https://headlight-tournament-5.herokuapp.com';
+  const url = 'https://headlight-tournament-4.herokuapp.com';
   return Promise.all([
     request.get(`${url}/bots`),
     request.get(`${url}/nodes`),

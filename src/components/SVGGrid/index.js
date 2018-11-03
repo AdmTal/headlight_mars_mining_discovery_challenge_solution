@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.scss';
+import Legend from './legend';
 
 const offset = 3;
 
@@ -186,16 +187,19 @@ export default class SVGGrid extends Component {
     const {cellSizeInPx, width, height} = this.props;
 
     return (
-      <svg
-        width={width * cellSizeInPx}
-        height={height * cellSizeInPx}
-      >
-        {this.renderBorder()}
-        {this.renderGridLines()}
-        {this.renderNodes()}
-        {this.renderBotClaims()}
-        {this.renderBots()}
-      </svg>
+      <div>
+        <Legend />
+        <svg
+          width={width * cellSizeInPx}
+          height={height * cellSizeInPx}
+        >
+          {this.renderBorder()}
+          {this.renderGridLines()}
+          {this.renderNodes()}
+          {this.renderBotClaims()}
+          {this.renderBots()}
+        </svg>
+      </div>
     );
   }
 

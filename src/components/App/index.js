@@ -36,34 +36,30 @@ export default class App extends Component {
     );
   }
 
-  renderLegend() {
-    return (
-      <div>
-         Red : BOT - shown with score <br />
-         Gray : Node - shown with score <br />
-         Green : Lines connecting a BOT to claimed nodes
-      </div>
-    );
-  }
-
   renderGrid() {
     return (
-      <SVGGrid
-        cellSizeInPx={35}
-        width={20}
-        height={20}
-        bots={this.state.bots}
-        nodes={this.state.nodes}
-      />
+      <div>
+        <h2>Visualized Minefield</h2>
+        <SVGGrid
+          cellSizeInPx={35}
+          width={20}
+          height={20}
+          bots={this.state.bots}
+          nodes={this.state.nodes}
+        />
+      </div>
     );
   }
 
   renderLeaderBoard() {
     return (
-      <LeaderBoard
-        bots={this.state.bots}
-        nodes={this.state.nodes}
-      />
+      <div>
+        <h2>Bot LeaderBoard</h2>
+        <LeaderBoard
+          bots={this.state.bots}
+          nodes={this.state.nodes}
+        />
+      </div>
     );
   }
 
@@ -81,7 +77,6 @@ export default class App extends Component {
               {this.renderLeaderBoard()}
             </Col>
             <Col md={8}>
-              {this.renderLegend()}
               {this.renderGrid()}
             </Col>
           </Row>

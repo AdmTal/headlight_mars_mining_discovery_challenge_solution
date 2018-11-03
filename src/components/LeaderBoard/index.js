@@ -4,6 +4,11 @@ import _ from 'lodash';
 
 export default class LeaderBoard extends Component {
 
+  // Credit :  https://stackoverflow.com/questions/15397372/javascript-new-date-ordinal-st-nd-rd-th
+  getOrdinalNum(n) {
+    return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
+  }
+
   renderRows() {
     const rows = [];
     const sortedBots = _.orderBy(this.props.bots, ['Score'], ['desc']);
@@ -11,7 +16,7 @@ export default class LeaderBoard extends Component {
     sortedBots.forEach((bot, index) => {
       rows.push(
         <tr>
-          <td>{index + 1}</td>
+          <td>{this.getOrdinalNum(index + 1)}</td>
           <td>{bot.Id}</td>
           <td>{bot.Score}</td>
           <td>{bot.Claims.length}</td>

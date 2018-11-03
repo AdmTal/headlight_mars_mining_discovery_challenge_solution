@@ -6,26 +6,26 @@ let testData = 'initial';
 
 class Store extends EventEmitter {
 
-    handleActions(action) {
+  handleActions(action) {
 
-        switch (action.type) {
-            case ACTIONS.TEST_ACTION: {
-                testData = action.value;
-                break;
-            }
-            default: {
-              break;
-            }
+    switch (action.type) {
+        case ACTIONS.TEST_ACTION: {
+          testData = action.value;
+          break;
         }
-
-        this.emit("storeUpdated");
+        default: {
+          break;
+        }
     }
 
-    getValuesFromStore() {
-        return {
-          testData
-        };
-    }
+    this.emit("storeUpdated");
+  }
+
+  getValuesFromStore() {
+    return {
+      testData
+    };
+  }
 }
 
 const store = new Store();

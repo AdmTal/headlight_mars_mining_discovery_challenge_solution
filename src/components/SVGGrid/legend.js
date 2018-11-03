@@ -33,10 +33,21 @@ export default class Legend extends Component {
           cy="25"
           r="18"
         />
-        <text x="225" y="25" text-anchor="middle" fill="white" dy=".3em" font-family="Arial" font-size="12">
+        <text
+          className="bot-circle-text"
+          x="225"
+          y="25"
+          dy=".3em"
+          font-size="12"
+        >
           Score
         </text>
-        <text x="250" y="25" fill="black" dy=".3em" font-family="Arial" font-size="12">
+        <text
+          x="250"
+          y="25"
+          dy=".3em"
+          font-size="12"
+        >
           -- Bot with current Score
         </text>
         <circle
@@ -53,9 +64,9 @@ export default class Legend extends Component {
         />
         <line
           className="bot-claim-line"
-          x1="25"
+          x1="36"
           y1="75"
-          x2="80"
+          x2="69"
           y2="75"
         />
         <text

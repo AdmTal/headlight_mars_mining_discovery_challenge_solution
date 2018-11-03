@@ -175,13 +175,19 @@ export default class SVGGrid extends Component {
         const node = this.findNodeById(claim);
         const botX = (node.Location.X+1) * cellSizeInPx - radius;
         const botY = (node.Location.Y+1) * cellSizeInPx - radius;
+
+        const xSlope = nodeX - botX;
+        const ySlope = nodeY - botY;
+
+        const lineOffset = .8;
+
         botClaimLines.push(
           <line
             className="bot-claim-line"
-            x1={botX}
-            y1={botY}
-            x2={nodeX}
-            y2={nodeY}
+            x1={botX + (lineOffset * xSlope)}
+            y1={botY + (lineOffset * ySlope)}
+            x2={nodeX - (lineOffset * xSlope)}
+            y2={nodeY - (lineOffset * ySlope)}
           />
         );
       });
@@ -203,8 +209,8 @@ export default class SVGGrid extends Component {
           {this.renderBorder()}
           {this.renderGridLines()}
           {this.renderNodes()}
-          {this.renderBotClaims()}
           {this.renderBots()}
+          {this.renderBotClaims()}
         </svg>
       </div>
     );

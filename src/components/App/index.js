@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import TestComponent from '../TestComponent'
+import SVGGrid from '../SVGGrid'
 import Store from '../../data/Store';
-import {testAction} from '../../data/Actions';
+import {getData} from '../../data/Actions';
+
+import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 
 export default class App extends Component {
   
@@ -16,6 +18,7 @@ export default class App extends Component {
   
   componentDidMount() {
     Store.on("storeUpdated", this.setStateFromStore);
+    setInterval(getData, 1000);
   }
 
   componentWillUnmount() {
@@ -25,7 +28,29 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <TestComponent onClick={testAction}/>
+        <Grid>
+          <Row>
+            <Col>
+              <PageHeader>Real Time Bot Locations</PageHeader>
+              <div>
+               Red : BOT - shown with score <br />
+               Gray : Node - shown with score <br />
+               Green : Lines connecting a BOT to claimed nodes
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <SVGGrid
+                cellSizeInPx={50}
+                width={20}
+                height={20}
+                bots={this.state.bots}
+                nodes={this.state.nodes}
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

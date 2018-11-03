@@ -2,15 +2,17 @@ import dispatcher from './Dispatcher';
 import {EventEmitter} from 'events';
 import {ACTIONS} from './Constants';
 
-let testData = 'initial';
+let bots = [];
+let nodes = [];
 
 class Store extends EventEmitter {
 
   handleActions(action) {
 
     switch (action.type) {
-        case ACTIONS.TEST_ACTION: {
-          testData = action.value;
+        case ACTIONS.GOT_DATA: {
+          bots = action.value.bots;
+          nodes = action.value.nodes;
           break;
         }
         default: {
@@ -23,7 +25,8 @@ class Store extends EventEmitter {
 
   getValuesFromStore() {
     return {
-      testData
+      bots,
+      nodes
     };
   }
 }

@@ -1,3 +1,3 @@
 export const ACTIONS = {
-    TEST_ACTION: 'TEST_ACTION',
+    GOT_DATA: 'GOT_DATA',
 };

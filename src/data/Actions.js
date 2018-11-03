@@ -1,11 +1,12 @@
 import dispatcher from './Dispatcher';
 import {ACTIONS} from './Constants';
-import {postPosts} from './API';
+import {fetchData} from './API';
 
-export function testAction(value) {
-  postPosts();
-  dispatcher.dispatch({
-    type: ACTIONS.TEST_ACTION,
-    value: 'hello',
+export function getData(value) {
+  fetchData().then((data) => {
+    dispatcher.dispatch({
+      type: ACTIONS.GOT_DATA,
+      value: data,
+    });
   });
 }

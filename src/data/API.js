@@ -1,15 +1,17 @@
 import request from 'superagent';
 
-export function getPosts() {
-  return request.get('https://jsonplaceholder.typicode.com/posts')
+export function fetchData() {
+  const url = 'https://headlight-tournament-4.herokuapp.com';
+  return Promise.all([
+    request.get(`${url}/bots`),
+    request.get(`${url}/nodes`),
+  ])
     .then(data => {
-      debugger;
-    });
-}
-
-export function postPosts() {
-  return request.post('https://jsonplaceholder.typicode.com/posts')
-    .then(data => {
-      debugger;
+      const bots = JSON.parse(data[0].text).Bots;
+      const nodes = JSON.parse(data[1].text).Nodes;
+      return {
+        bots,
+        nodes
+      };
     });
 }

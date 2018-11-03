@@ -4,7 +4,12 @@ import { Button } from 'react-bootstrap';
 export default class TestComponent extends Component {
   render() {
     return (
-      <Button bsStyle="success">Adam</Button>
+      <Button
+        bsStyle="success"
+        onClick={this.props.onClick}
+      >
+        Adam
+      </Button>
     );
   }
 }

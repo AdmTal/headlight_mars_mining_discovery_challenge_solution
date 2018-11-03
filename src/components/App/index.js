@@ -25,7 +25,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <TestComponent />
+        <TestComponent onClick={testAction}/>
       </div>
     );
   }

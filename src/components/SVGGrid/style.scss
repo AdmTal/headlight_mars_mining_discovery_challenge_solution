@@ -1,8 +1,36 @@
+text {
+  font-family:Arial;
+}
+
 line {
   stroke: black;
-  stroke-width: 2;
+  stroke-width: 1;
 }
 
 .bot-claim-line {
   stroke: lightgreen;
+  stroke-width: 3;
+  fill: blue;
+}
+
+.node-circle {
+  fill: #aeaeae;
+}
+
+%circle-text {
+  text-anchor: middle;
+}
+
+.node-circle-text {
+  @extend %circle-text;
+  fill: black;
+}
+
+.bot-circle-text {
+  @extend %circle-text;
+  fill: white;
+}
+
+.bot-circle {
+  fill: red;
 }

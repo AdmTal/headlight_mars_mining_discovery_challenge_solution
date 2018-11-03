@@ -41,7 +41,7 @@ export default class App extends Component {
       <div>
         <h2>Visualized Minefield</h2>
         <SVGGrid
-          cellSizeInPx={30}
+          cellSizeInPx={32}
           width={20}
           height={20}
           bots={this.state.bots}

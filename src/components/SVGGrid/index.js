@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import './style.scss';
 import Legend from './legend';
 
-const offset = 3;
+const padding_in_cell = 2;
 
 export default class SVGGrid extends Component {
 
+  /**
+   * Helper function to scale font size for given cellSizeInPx
+   */
   getFontSize() {
     return (this.props.cellSizeInPx / 2.77) + 'px';
   }
 
   /**
-   * Renders the BORDER of the GRID
+   * Renders the BORDER around the GRID
    */
   renderBorder() {
     const {cellSizeInPx, width, height} = this.props;
@@ -42,6 +46,7 @@ export default class SVGGrid extends Component {
         <line x1="0" y1={i * cellSizeInPx} x2={maxX} y2={i * cellSizeInPx} />
       )
     }
+
     for(let i = 0; i < height; i++) {
       gridLines.push(
         <line y1="0" x1={i * cellSizeInPx} y2={maxY} x2={i * cellSizeInPx} />
@@ -65,26 +70,31 @@ export default class SVGGrid extends Component {
 
     nodes.forEach((node) => {
       const {X, Y} = node.Location;
-      const radius = (cellSizeInPx / 2) - offset;
-      const cx = (X+1) * cellSizeInPx - radius;
-      const cy = (Y+1) * cellSizeInPx - radius;
+
+      // Calculate grid position in pixels
+      const radius = (cellSizeInPx / 2) - padding_in_cell;
+      const cx = ((X+1) * cellSizeInPx - radius) - padding_in_cell;
+      const cy = ((Y+1) * cellSizeInPx - radius) - padding_in_cell;
+
       nodeCells.push(
         <circle
-          cx={cx  - offset}
-          cy={cy - offset}
+          className="node-circle"
+          cx={cx}
+          cy={cy}
           r={radius}
-          fill="#aeaeae"
         />
       );
+
       nodeCells.push(
         <text
-          x={cx - offset}
-          y={cy - offset}
-          text-anchor="middle"
-          fill="black"
+          className="node-circle-text"
+          x={cx}
+          y={cy}
           font-size={this.getFontSize()}
-          font-family="Arial"
-          dy=".3em">{node.Value}</text>
+          dy=".3em"
+        >
+          {node.Value}
+        </text>
       );
     });
 
@@ -105,26 +115,31 @@ export default class SVGGrid extends Component {
 
     bots.forEach((bot) => {
       const {X, Y} = bot.Location;
-      const radius = (cellSizeInPx / 2) - offset;
-      const cx = (X+1) * cellSizeInPx - radius;
-      const cy = (Y+1) * cellSizeInPx - radius;
+
+      // Calculate grid position in pixels
+      const radius = (cellSizeInPx / 2) - padding_in_cell;
+      const cx = ((X+1) * cellSizeInPx - radius) - padding_in_cell;
+      const cy = ((Y+1) * cellSizeInPx - radius) - padding_in_cell;
+
       botCells.push(
         <circle
-          cx={cx - offset}
-          cy={cy - offset}
+          className="bot-circle"
+          cx={cx}
+          cy={cy}
           r={radius}
-          fill="red"
         />
       );
+
       botCells.push(
         <text
-          x={cx - offset}
-          y={cy - offset}
-          text-anchor="middle"
-          fill="white"
+          className="bot-circle-text"
+          x={cx}
+          y={cy}
           font-size={this.getFontSize()}
-          font-family="Arial"
-          dy=".3em">{bot.Score}</text>
+          dy=".3em"
+        >
+          {bot.Score}
+        </text>
       );
     });
 
@@ -135,16 +150,7 @@ export default class SVGGrid extends Component {
    * A helper function to find a given NODE by it's ID
    */
   findNodeById(id) {
-    const {nodes} = this.props;
-
-    let node;
-    nodes.forEach((x) => {
-      if (x.Id === id) {
-        node = x;
-      }
-    });
-
-    return node;
+    return _.find(this.props.nodes, (node) => node.Id === id);
   }
 
   /**
@@ -156,14 +162,15 @@ export default class SVGGrid extends Component {
     const botClaimLines = [];
 
     bots.forEach((bot) => {
+      if (bot.Claims.length === 0) {
+        return;
+      }
+
       const {X, Y} = bot.Location;
       const radius = (cellSizeInPx / 2);
       const nodeX = (X+1) * cellSizeInPx - radius;
       const nodeY = (Y+1) * cellSizeInPx - radius;
 
-      if (bot.Claims.length === 0) {
-        return;
-      }
       bot.Claims.forEach((claim) => {
         const node = this.findNodeById(claim);
         const botX = (node.Location.X+1) * cellSizeInPx - radius;

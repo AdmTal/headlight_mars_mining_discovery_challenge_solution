@@ -6,16 +6,16 @@ import {getData} from '../../data/Actions';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 
 export default class App extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = Store.getValuesFromStore();
   }
-  
+
   setStateFromStore = () => {
     this.setState(Store.getValuesFromStore());
   }
-  
+
   componentDidMount() {
     Store.on("storeUpdated", this.setStateFromStore);
     setInterval(getData, 1000);
@@ -30,8 +30,10 @@ export default class App extends Component {
       <div>
         <Grid>
           <Row>
-            <Col>
-              <PageHeader>Real Time Bot Locations</PageHeader>
+            <Col >
+              <PageHeader>
+                Real Time Bot Locations
+              </PageHeader>
               <div>
                Red : BOT - shown with score <br />
                Gray : Node - shown with score <br />

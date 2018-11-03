@@ -54,7 +54,7 @@ export default class SVGGrid extends Component {
    * Renders the NODEs on the GRID
    */
   renderNodes() {
-    const {cellSizeInPx, width, nodes} = this.props;
+    const {cellSizeInPx, nodes} = this.props;
 
     if (nodes.length === 0) {
       return;
@@ -94,7 +94,7 @@ export default class SVGGrid extends Component {
    * Renders the BOTs on the GRID
    */
   renderBots() {
-    const {cellSizeInPx, width, bots} = this.props;
+    const {cellSizeInPx, bots} = this.props;
 
     if (bots.length === 0) {
       return;
@@ -150,7 +150,7 @@ export default class SVGGrid extends Component {
    * Draws lines beteen BOTs and any NODEs that they have a claim on
    */
   renderBotClaims() {
-    const {cellSizeInPx, width, bots} = this.props;
+    const {cellSizeInPx, bots} = this.props;
 
     const botClaimLines = [];
 

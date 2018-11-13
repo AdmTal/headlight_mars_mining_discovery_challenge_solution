@@ -1,3 +1,19 @@
+# Adam Tal's Headlight Mars Mining Discovery Tournament Entry
+
+Hi All,
+
+This repo contains my solution to the 2018 NYC Headlight Mars Mining Discovery Tournament.
+
+My original submission is preserved in the .zip file.  The other files represent a few more hours of tinkering past the submission deadline.
+
+Cheers,
+
+Adam
+
+Hosted solution on Heroku --> https://guarded-coast-51104.herokuapp.com/
+
+# Original Readme preserved
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
